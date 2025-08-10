@@ -1,0 +1,279 @@
+:root {
+    --primary-bg: #0a1628;
+    --secondary-bg: #0f1b2d;
+    --accent-color: #00d9ff;
+    --secondary-accent: #00ff88;
+    --text-primary: #ffffff;
+    --text-secondary: #b0c4de;
+    --gradient-primary: linear-gradient(135deg, #0a1628 0%, #1a2332 50%, #0f1b2d 100%);
+    --gradient-accent: linear-gradient(90deg, #00d9ff, #00ff88);
+    --glow-color: rgba(0, 217, 255, 0.3);
+    --glow-secondary: rgba(0, 255, 136, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gradient-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+.content {
+    text-align: center;
+    z-index: 20;
+    position: relative;
+}
+
+.intro-text {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.name {
+    background: var(--gradient-accent);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.name::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+    transform: scaleX(0);
+    animation: underlineExpand 0.8s ease-out 1.8s forwards;
+}
+
+.typewriter-container {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
+    position: relative;
+}
+
+.static-text {
+    color: var(--text-secondary);
+}
+
+.typewriter-text {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-shadow: 0 0 20px var(--glow-color);
+    position: relative;
+}
+
+.cursor {
+    color: var(--secondary-accent);
+    font-weight: 300;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+/* Particle system */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float linear infinite;
+}
+
+/* Floating elements */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.floating-element {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    opacity: 0.1;
+    filter: blur(1px);
+}
+
+.floating-element-1 {
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    left: 10%;
+    animation: floatSlow 15s ease-in-out infinite;
+}
+
+.floating-element-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation: floatSlow 20s ease-in-out infinite reverse;
+}
+
+.floating-element-3 {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 20%;
+    animation: floatSlow 12s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineExpand {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    to {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(50px, -30px) rotate(90deg);
+    }
+    50% {
+        transform: translate(-30px, -60px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-60px, -30px) rotate(270deg);
+    }
+}
+
+/* Glow effect for typewriter text */
+.typewriter-text.glow {
+    text-shadow: 
+        0 0 5px var(--accent-color),
+        0 0 10px var(--accent-color),
+        0 0 15px var(--accent-color),
+        0 0 20px var(--glow-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .typewriter-container {
+        font-size: 1.8rem;
+    }
+    
+    .floating-element-1,
+    .floating-element-2,
+    .floating-element-3 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .typewriter-container {
+        font-size: 1.4rem;
+    }
+}
+
+/* Custom scrollbar for future content */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-accent);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
