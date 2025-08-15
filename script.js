@@ -12,7 +12,11 @@ const ROLES = [
     "Biologist",
     "Philosopher",
     "Clown",
-    "Chihuahua Daddy"
+    "Chihuahua Daddy",
+    "Mountain Climber",
+    "Astronaut",
+    "Actor",
+    "Administrator"
 ];
 
 // Typewriter effect configuration
@@ -243,3 +247,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Export for potential future use
 export { TypewriterEffect, ParticleSystem, BackgroundEffects, ROLES };
+
